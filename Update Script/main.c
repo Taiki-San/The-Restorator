@@ -25,7 +25,7 @@ int main()
     test = fopen("../The Restorator.exe", "r");
     if(test == NULL)
     {
-        printf("Bonjour, veuillez deplacer tous les dossier decompresse contenant les\nchapitres dans le repertoire 'Update' qui est dans le repertoire du Restorator.\nLe repertoire est ecrit dans la fenetre noir qui apparait au lancement.\nMettez aussi cet programme dans le dossier 'Update'\n\nEntrez un chiffre et 'enter' pour fermer le programme.\n-> ");
+        printf("Hello, please move all uncompressed folders who contains chapters configured\non the 'Update' folder who is in the Restorator folder.\nThis programm need to run in this folder too\n\nType a number and enter for close this script.\n-> ");
         scanf("%s", temp);
         return 0;
     }
@@ -38,9 +38,9 @@ int main()
             fclose(test);
             remove("../mangadisponible");
             system("move mangadisponible ../");
-            printf("Base de données des manga existant a été mise à jour.\n\n");
+            printf("Know manga's database up to date.\n\n");
         }
-        printf("Bonjour et bievenue dans ce script de mise a jour.\n\nVerifiez que les dossier contenant les chapitres (1 dossier/chapitre) sont bien directement dans le dossier 'Update'.\nUne fois que c'est fais, entrez le ou les numero correspondant aux mangas \ndont vous ajoutez des chapitres.\n\nEntrez 0 quand vous avez fini et sautez une ligne entre chaque manga.\n\n");
+        printf("Hello and welcome in this updating script.\n\nCheck the folders who contains chapters (1 folder/chapter) are directly on the 'Update' folder.\nWhen it's finish, type the numbers or the numbers corresponding to mangas\nwhose you want add chapters\n\nType 0 when you've finish and skip a line beetwen each manga.\n\n");
         test = fopen("../mangadisponible", "r");
         for(i = 0; i < 20; i++)
         {
@@ -75,13 +75,13 @@ int main()
         for(i = 0; mangaAjoutes[i] != 0; i++)
         {
             temp2 = mangaAjoutes[i] - 1;
-            printf("\n%s\nSi tous les chapitre que vous ajoutez se suivent, faites 1, sinon 0.\nFaites ensuite 'enter'\n->", manga[temp2]);
+            printf("\n%s\nIf all the chapters you want to add follow, type 1, otherwise 0.\nAfter, type 'enter'\n->", manga[temp2]);
             scanf("%s", k);
             if(k[0] == '1')
             {
-                printf("Entrez le numero du premier chapitre.\n-> ");
+                printf("Type the first chapter number.\n-> ");
                 scanf("%d", &j);
-                printf("Entrez le dernier chapitre.\n-> ");
+                printf("Type the las chapter number.\n-> ");
                 scanf("%d", &coin);
                 while(j <= coin)
                 {
@@ -91,7 +91,7 @@ int main()
             }
             else
             {
-                printf("Entrez les numero de chapitres un par un en faisant 'enter' entre chaques.\nQuand vous avez finis, tapez 0 puis 'enter'");
+                printf("Type chapters number one per one and type 'enter' between each.\nWhen you've finish, type 0 and 'enter'");
                 j = -1;
                 while(j != 0)
                 {
@@ -107,3 +107,5 @@ int main()
     fclose(fichier);
     return 0;
 }
+
+
