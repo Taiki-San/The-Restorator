@@ -1,0 +1,20 @@
+data must the decompressed on the main folder
+mangadisponible must be on the main folder
+You need to creat a new folder named manga and send config.dat in this new one
+
+For update manga database:
+-> compile 1st script
+-> run this script on a manga's folder
+-> Creat a SDL project & add SDL_Image
+-> compile 2nd script
+-> run the new script in a folder w/ the new config.dat & all manga's page
+-> Change the folder name in a "Chapitre_chapiternumber" (chapitre and not chapiter)
+-> move this folder in a new folder on the main one. Call this new folder 'Update'
+-> add to mangadisponible your manga name w/ '_' for spaces, abbreviation for the manga and the state (1: in progress, 2: Finish/Abandoned, 3: One-shot)
+-> move this new mangadisponible version into Update
+-> compile the last script (update)
+-> run it in the update folder
+-> launch The Restorator
+-> the manga in now alvailable inside the restorator
+
+-> for any issue, notify me
