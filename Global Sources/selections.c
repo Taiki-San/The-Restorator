@@ -9,7 +9,7 @@ int check(SDL_Surface *ecran, char mangaDispo[MANGA_MAX][30], int dernierChapDis
     SDL_Event event;
 
     config = fopen("manga/config.dat", "r"); //On ouvre le fichier de config
-    if(config != NULL)//Si ouverture réussie
+    if(config != NULL)//Si ouverture rï¿½ussie
     {
         while(temp2 != 2)//Tant qu'on est pas au bout du fichier
         {
@@ -341,7 +341,7 @@ int choixChapitre(int categorie[MANGA_MAX], int sectionChoisie, int mangaChoisis
     fclose(config);
     accueil = IMG_Load("data/chapitre disponible.jpg");
     crashTemp(temp);
-    sprintf(temp, "Plus vieux chapitre: %d -- Chapitre le plus recent: %d", extremesManga[0], extremesManga[1]);
+    sprintf(temp, "Older chapter: %d -- Newest chapter: %d", extremesManga[0], extremesManga[1]);
     chapitre1 = TTF_RenderText_Blended(police, temp, couleurAccueil);
     crashTemp(temp);
     while (chapitreChoisis == 0)
