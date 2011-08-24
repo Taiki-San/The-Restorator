@@ -1,1 +1,5 @@
-TRANSLATIONS & COMMENTS COMING SOON
+COMMENTS COMING SOON
+
+This programm need the SDL, SDL_Image & SDL_TFF for compile.
+The programm need to be compile as GUI application.
+Will provide windows working version soon. :)
