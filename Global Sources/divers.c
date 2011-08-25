@@ -85,6 +85,7 @@ int check4update(SDL_Surface *ecran)
                         nomMangaComplet[reinit] = 0;
                     }
                     fscanf(reference, "%s %s %d\n", nomMangaComplet, nomMangaCourt, &classe);
+
                 }
                 sprintf(temp, "manga/%s/Chapitre_%d/config.dat", nomMangaComplet, numeroChapitre);
                 config = fopen(temp, "r");
@@ -129,7 +130,6 @@ int check4update(SDL_Surface *ecran)
                             i = 0;
                         }
                     }
-                    i++;
                     if(strcmp(temp, "<-") != 0)
                     {
                         fscanf(config, "%d", &numeroChapitreTemporaire);
@@ -175,6 +175,8 @@ int check4update(SDL_Surface *ecran)
                 }
                 else
                     fclose(config);
+
+                rewind(reference);
             }
         }
         fclose(reference);
