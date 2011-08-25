@@ -18,21 +18,19 @@ void miseEnPause()
         SDL_WaitEvent(&event);
         if ((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE)
         {
-            if (event.active.gain == 0) /* La fenêtre a été réduite en barre des tâches */
+            if (event.active.gain == 0) // La fenêtre a été réduite en barre des tâches
                 restart = 1;
-            else if (event.active.gain == 1) /* La fenêtre a été restaurée */
+            else if (event.active.gain == 1) // La fenêtre a été restaurée
                 restart = 0;
         }
 
         if ((event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
         {
-            if (event.active.gain == 0) /* La fen^tre a quitté le premier plan */
+            if (event.active.gain == 0) // La fenêtre a quitté le premier plan
                 restart = 1;
-            else if (event.active.gain == 1) /* La fenêtre a retrouvé le premier plan */
+            else if (event.active.gain == 1) // La fenêtre a retrouvé le premier plan
                 restart = 0;
         }
-
-
     }
 }
 

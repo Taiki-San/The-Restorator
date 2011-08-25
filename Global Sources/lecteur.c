@@ -10,8 +10,6 @@ int lecteur(int *chapitreChoisis, char mangaDispo[MANGA_MAX][30], int IDManga, S
     SDL_Surface *bandeauSup = NULL, *bandeauInf = NULL, *fond = NULL;
     SDL_Event event;
 
-    check4change = *chapitreChoisis;
-
     positionAffichage.y = BORDURE_HORIZONTALE;
     positionTemp.x = 0;
     positionPage.h = 0;
@@ -102,131 +100,147 @@ int lecteur(int *chapitreChoisis, char mangaDispo[MANGA_MAX][30], int IDManga, S
         positionTemp.y = HAUTEUR - 100;
         SDL_BlitSurface(bandeauInf, NULL, ecran, &positionTemp);
         SDL_Flip(ecran);
-        SDL_WaitEvent(&event);
-
-        if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
-            miseEnPause();
-
-        switch(event.type)
+        do
         {
-            case SDL_QUIT:
-                *chapitreChoisis = -1;
-                return 0;
-                break;
+            check4change = 0;
 
-            case SDL_MOUSEBUTTONDOWN:
-                if(event.button.button == SDL_BUTTON_WHEELDOWN)
-                {
-                    if(positionPage.y < (pageActuelle.hauteurP - (HAUTEUR - bandeauInf->h - BORDURE_HORIZONTALE)))
-                        positionPage.y = positionPage.y + DEPLACEMENT;
+            SDL_WaitEvent(&event);
 
-                    SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
-                }
+            switch(event.type)
+            {
+                case SDL_QUIT:
+                    *chapitreChoisis = -1;
+                    return 0;
+                    break;
 
-                else if (event.button.button == SDL_BUTTON_WHEELUP)
-                {
-                    if(positionPage.y > 0)
-                        positionPage.y = positionPage.y - DEPLACEMENT;
-
-                    SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
-                }
-
-                else
-                {
-                    if(event.button.y > (HAUTEUR - 100 + 10) && event.button.y < (HAUTEUR - 100 + 75)) //Si le curseur est au niveau des fleches sur l'axe y
+                case SDL_MOUSEBUTTONDOWN:
+                    if(event.button.button == SDL_BUTTON_WHEELDOWN)
                     {
-                        if(event.button.x >= positionTemp.x + 30 && event.button.x <= positionTemp.x + 125)
+                        if(positionPage.y < (pageActuelle.hauteurP - (HAUTEUR - bandeauInf->h - BORDURE_HORIZONTALE)))
+                            positionPage.y = positionPage.y + DEPLACEMENT;
+
+                        SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
+                    }
+
+                    else if (event.button.button == SDL_BUTTON_WHEELUP)
+                    {
+                        if(positionPage.y > 0)
+                            positionPage.y = positionPage.y - DEPLACEMENT;
+
+                        SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
+                    }
+
+                    else
+                    {
+                        if(event.button.y > (HAUTEUR - 100 + 10) && event.button.y < (HAUTEUR - 100 + 75)) //Si le curseur est au niveau des fleches sur l'axe y
                         {
-                            if(*chapitreChoisis > extremesManga[0])
+                            if(event.button.x >= positionTemp.x + 30 && event.button.x <= positionTemp.x + 125)
+                            {
+                                if(*chapitreChoisis > extremesManga[0])
+                                    {
+                                        *chapitreChoisis = *chapitreChoisis - 1;
+                                        return 0;
+                                    }
+                            }
+
+                            else if(event.button.x >= positionTemp.x + 185 && event.button.x <= positionTemp.x + 285)
+                            {
+                                if (pageEnCoursDeLecture > 1)
+                                        pageEnCoursDeLecture--;
+                            }
+
+                            else if (event.button.x >= positionTemp.x + 510 && event.button.x <= positionTemp.x + 605)
+                            {
+                                if (pageEnCoursDeLecture < pageActuelle.pageTotal)
+                                    pageEnCoursDeLecture++;
+                            }
+
+                            else if (event.button.x >= positionTemp.x + 665 && event.button.x <= positionTemp.x + 760)
+                            {
+                                if(*chapitreChoisis < extremesManga[1])
                                 {
-                                    *chapitreChoisis = *chapitreChoisis - 1;
+                                    *chapitreChoisis = *chapitreChoisis + 1; //Il faut faire en sorte qu'il soit possible de changer de chapitre
                                     return 0;
                                 }
+                            }
                         }
+                    }
+                    SDL_Flip(ecran);
+                    break;
 
-                        else if(event.button.x >= positionTemp.x + 185 && event.button.x <= positionTemp.x + 285)
-                        {
-                            if (pageEnCoursDeLecture > 1)
-                                    pageEnCoursDeLecture--;
-                        }
+                case SDL_KEYDOWN:
+                    switch(event.key.keysym.sym)
+                    {
+                        case SDLK_UP:
+                            if(positionPage.y > 0)
+                                positionPage.y = positionPage.y - DEPLACEMENT;
 
-                        else if (event.button.x >= positionTemp.x + 510 && event.button.x <= positionTemp.x + 605)
-                        {
-                            if (pageEnCoursDeLecture < pageActuelle.pageTotal)
-                                pageEnCoursDeLecture++;
-                        }
+                            SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
+                            break;
 
-                        else if (event.button.x >= positionTemp.x + 665 && event.button.x <= positionTemp.x + 760)
-                        {
+                        case SDLK_DOWN:
+                            if(positionPage.y < (pageActuelle.hauteurP - (HAUTEUR - bandeauInf->h - BORDURE_HORIZONTALE)))
+                                positionPage.y = positionPage.y + DEPLACEMENT;
+
+                            SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
+                            break;
+
+                        case SDLK_n:
                             if(*chapitreChoisis < extremesManga[1])
                             {
                                 *chapitreChoisis = *chapitreChoisis + 1; //Il faut faire en sorte qu'il soit possible de changer de chapitre
                                 return 0;
                             }
-                        }
+                            break;
+
+                        case SDLK_RIGHT:
+                            if (pageEnCoursDeLecture < pageActuelle.pageTotal)
+                                pageEnCoursDeLecture++;
+                            break;
+
+                        case SDLK_p:
+                            if(*chapitreChoisis > extremesManga[0])
+                            {
+                                *chapitreChoisis = *chapitreChoisis - 1;
+                                return 0;
+                            }
+                            break;
+
+                        case SDLK_LEFT:
+                            if (pageEnCoursDeLecture > 1)
+                                pageEnCoursDeLecture--;
+                            break;
+
+                        case SDLK_ESCAPE:
+                            *chapitreChoisis = -2;
+                            SDL_FreeSurface(fond);
+                            SDL_FreeSurface(ecran); //Test, risque de bug majeur
+                            SDL_FreeSurface(chapitre);
+                            ecran = SDL_SetVideoMode(800, HAUTEUR, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+                            fond = SDL_CreateRGBSurface(SDL_HWSURFACE, 800, HAUTEUR, 32, 0, 0 , 0, 0);
+                            SDL_BlitSurface(fond, NULL, ecran, NULL);
+                            return 0;
+                            break;
+
+                        default:
+                            break;
+
                     }
-                }
-                SDL_Flip(ecran);
-                break;
+                    SDL_Flip(ecran);
+                    break;
 
-            case SDL_KEYDOWN:
-                switch(event.key.keysym.sym)
-                {
-                    case SDLK_UP:
-                        if(positionPage.y > 0)
-                            positionPage.y = positionPage.y - DEPLACEMENT;
+                default:
+                    check4change = 1;
+                    break;
+            }
 
-                        SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
-                        break;
+/*            if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
+            {
+                miseEnPause();
+                check4change = 0;
+            }*/
 
-                    case SDLK_DOWN:
-                        if(positionPage.y < (pageActuelle.hauteurP - (HAUTEUR - bandeauInf->h - BORDURE_HORIZONTALE)))
-                            positionPage.y = positionPage.y + DEPLACEMENT;
-
-                        SDL_BlitSurface(chapitre, &positionPage, chapitre, &positionAffichage);
-                        break;
-
-                    case SDLK_n:
-                        if(*chapitreChoisis < extremesManga[1])
-                        {
-                            *chapitreChoisis = *chapitreChoisis + 1; //Il faut faire en sorte qu'il soit possible de changer de chapitre
-                            return 0;
-                        }
-                        break;
-
-                    case SDLK_RIGHT:
-                        if (pageEnCoursDeLecture < pageActuelle.pageTotal)
-                            pageEnCoursDeLecture++;
-                        break;
-
-                    case SDLK_p:
-                        if(*chapitreChoisis > extremesManga[0])
-                        {
-                            *chapitreChoisis = *chapitreChoisis - 1;
-                            return 0;
-                        }
-                        break;
-
-                    case SDLK_LEFT:
-                        if (pageEnCoursDeLecture > 1)
-                            pageEnCoursDeLecture--;
-                        break;
-
-                    case SDLK_ESCAPE:
-                        *chapitreChoisis = -2;
-                        SDL_FreeSurface(fond);
-                        SDL_FreeSurface(ecran); //Test, risque de bug majeur
-                        SDL_FreeSurface(chapitre);
-                        ecran = SDL_SetVideoMode(800, HAUTEUR, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-                        fond = SDL_CreateRGBSurface(SDL_HWSURFACE, 800, HAUTEUR, 32, 0, 0 , 0, 0);
-                        SDL_BlitSurface(fond, NULL, ecran, NULL);
-                        return 0;
-                        break;
-
-                    default:
-                        break;
-                }
-        }
+        } while(check4change);
         SDL_FreeSurface(bandeauSup);
         SDL_FreeSurface(chapitre);
     }
