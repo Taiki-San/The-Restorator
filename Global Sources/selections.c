@@ -34,9 +34,6 @@ int check(SDL_Surface *ecran, char mangaDispo[MANGA_MAX][30], int dernierChapDis
         {
             SDL_WaitEvent(&event);
 
-            if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
-                miseEnPause();
-
             switch(event.type)
             {
                 case SDL_QUIT:
@@ -64,9 +61,6 @@ int choixSection(SDL_Surface *ecran)
     while(selection == 0)
     {
         SDL_WaitEvent(&event);
-
-        if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
-            miseEnPause();
 
         switch(event.type)
         {
@@ -362,9 +356,6 @@ int choixChapitre(int categorie[MANGA_MAX], int sectionChoisie, int mangaChoisis
         }
         SDL_Flip(ecran);
         SDL_WaitEvent(&event);
-
-        if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
-            miseEnPause();
 
         switch(event.type)
         {

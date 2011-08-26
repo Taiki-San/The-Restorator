@@ -54,9 +54,6 @@ int main(int argc, char *argv[])
     {
         SDL_WaitEvent(&event); //Wait any user action
 
-        if((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE || (event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS) //If the windows quit the foreground
-            miseEnPause(); //background function
-
         switch(event.type)
         {
             case SDL_QUIT: //If the main window is closed

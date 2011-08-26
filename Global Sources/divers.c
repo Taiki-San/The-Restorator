@@ -9,31 +9,6 @@ void crashTemp(char temp[100])
     }
 }
 
-void miseEnPause()
-{
-    int restart = 1;
-    SDL_Event event;
-    while(restart)
-    {
-        SDL_WaitEvent(&event);
-        if ((event.active.state & SDL_APPACTIVE) == SDL_APPACTIVE)
-        {
-            if (event.active.gain == 0) // La fenêtre a été réduite en barre des tâches
-                restart = 1;
-            else if (event.active.gain == 1) // La fenêtre a été restaurée
-                restart = 0;
-        }
-
-        if ((event.active.state & SDL_APPINPUTFOCUS) == SDL_APPINPUTFOCUS)
-        {
-            if (event.active.gain == 0) // La fenêtre a quitté le premier plan
-                restart = 1;
-            else if (event.active.gain == 1) // La fenêtre a retrouvé le premier plan
-                restart = 0;
-        }
-    }
-}
-
 int check4update(SDL_Surface *ecran)
 {
     SDL_Surface *chargement = NULL;

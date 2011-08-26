@@ -31,5 +31,4 @@ int choixManga(SDL_Surface *ecran, SDL_Color couleurAccueil, char mangaDispo[MAN
 void crashTemp(char temp[100]);
 int choixChapitre(int categorie[MANGA_MAX], int sectionChoisie, int mangaChoisis, int extremesManga[2], char mangaDispo[MANGA_MAX][30], SDL_Color couleurAccueil, SDL_Surface *ecran, int *IDManga);
 int lecteur(int *chapitreChoisis, char mangaDispo[MANGA_MAX][30], int IDManga, SDL_Surface *ecran, int extremesManga[2]);
-void miseEnPause();
 int check4update(SDL_Surface *ecran);
