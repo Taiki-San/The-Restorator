@@ -1,6 +1,9 @@
-THIS CODE IS UNDER GNU GPL v3 LICENCE
-IF YOU WANT TO INTEGRATE THIS CODE IS YOUR PROGRAMM, PLEASE CONTACT ME.
-PLEASE QUOTE ME ON CREDITS OF YOUR PROGRAMM
+THIS CODE IS UNDER CREATIVE COMMONS LICENCE BY-NC-SA -> http://creativecommons.org/licenses/by-nc-sa/2.0/
+IF YOU WANT TO INTEGRATE THIS CODE IS YOUR PROGRAMM OR USE IT, PLEASE CONTACT ME.
 
 This programm need the SDL, SDL_Image & SDL_TFF for compile.
 The programm need to be compile as GUI application.
+
+I release the source code of the previous major update.
+
+The 3.0 update is currently in progress: I'll update this repo with the 2.0 source code ASAP after the release of the 3.0

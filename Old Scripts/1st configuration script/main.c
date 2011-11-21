@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     printf("Does credits to be included inside the numbering?\n0: Include or at the end\n1: No-include and on the first position.\nWARNING, IF YOU TYPE 1, YOU'LL NEED WRITE THE FILE'S NAME MANUALY\n->");
     scanf("%d", &credit);
     config = fopen("config.dat", "w+");
-    fprintf(config, "     \n");
+    fprintf(config, "%d\n", page);
     for(i = 1; i <= page; i++)
     {
         pageDoublee = 0;
