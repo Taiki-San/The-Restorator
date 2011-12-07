@@ -2,22 +2,39 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="The Restaurator" />
+		<Option title="The Restorator" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
 				<Option output="The Restorator" prefix_auto="1" extension_auto="1" />
-				<Option object_output="C:\Users\Taiki\Developpement\The Restorator\obj" />
+				<Option object_output="obj\Debug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libcurl.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libcurldll.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libssh2.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libssh2dll.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libssl32.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libeay32.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libssl.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libcrypto.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\SDL_ttf.lib" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\librtmp.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libz.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libzdll.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libidn.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libidn.dll.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\SDL_image.lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="The Restorator" prefix_auto="1" extension_auto="1" />
-				<Option object_output="C:\Users\Taiki\Developpement\The Restorator\obj\Release" />
+				<Option output="bin\Release\The Restorator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -40,7 +57,6 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
-			<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\SDL_ttf.lib" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
 		<Unit filename="divers.c">
@@ -57,6 +73,9 @@
 			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Unit filename="selections.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="update.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
