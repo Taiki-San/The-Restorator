@@ -1,1 +1,12 @@
-A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "data/icone final.ICO"
+/*********************************************
+**           								**
+**           The Restorator v3.2.1          **
+**     		 Released by 29/05/2012 		**
+**           								**
+**********************************************/
+
+#include "main.h"
+
+#ifdef WINDOWS
+1 ICON "data/icone_dev.ico"
+#endif
